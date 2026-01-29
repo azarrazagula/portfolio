@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 const Backdrop = (props) => {
@@ -15,7 +15,7 @@ const Backdrop = (props) => {
 const ModalOverlay = (props) => {
   return (
     <div
-      className=" z-50 bg-white text-textcolor rounded-lg w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 animate-top"
+      className={`z-50 bg-white text-textcolor rounded-lg w-full max-w-6xl mx-auto p-4 sm:p-6 lg:p-10 ${props.isClosing ? "animate-top-close" : "animate-top"}`}
       onClick={(e) => e.stopPropagation()}
     >
       {props.children}
@@ -24,13 +24,20 @@ const ModalOverlay = (props) => {
 };
 
 const Modal = (props) => {
-  const portals = document.getElementById("overlays");
+  const [isClosing, setIsClosing] = useState(false);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      props.onClose();
+    }, 500);
+  };
 
   return ReactDOM.createPortal(
-    <Backdrop onClose={props.onClose}>
-      <ModalOverlay>{props.children}</ModalOverlay>
+    <Backdrop onClose={handleClose}>
+      <ModalOverlay isClosing={isClosing}>{props.children}</ModalOverlay>
     </Backdrop>,
-    portals,
+    document.getElementById("overlays"),
   );
 };
 
