@@ -4,7 +4,6 @@ import About from "../About/About";
 import Contact from "../Contact/Contact";
 import ScrollerAnime from "../UI/Reuseable/ScrollerAnime";
 import Backdrop from "../UI/Backdrop/Backdrop";
-import styles from "./Portfolio.module.css";
 
 const Portfolio = () => {
   const [isShow, setIsShow] = useState(false);
@@ -19,9 +18,7 @@ const Portfolio = () => {
   return (
     <>
       <ScrollerAnime>
-        <div
-          className={`bg-[#1C1A19] text-white pt-24 sm:pt-28 lg:pt-32 px-4 sm:px-8 lg:px-24 pb-12 lg:py-24 flex flex-col gap-6 sm:gap-8 items-center min-h-screen justify-center text-center ${styles.h1}`}
-        >
+        <div className="bg-[#1C1A19] text-white pt-24 sm:pt-28 lg:pt-32 px-4 sm:px-8 lg:px-24 pb-12 lg:py-24 flex flex-col gap-6 sm:gap-8 items-center min-h-screen justify-center text-center">
           <h1 className=" text-[#F55800] font-bold text-3xl  sm:text-5xl lg:text-8xl fade-up fade-delay-1">
             Hey There. I'm Azar.
           </h1>
@@ -41,9 +38,6 @@ const Portfolio = () => {
       <RecentWork onShowIt={showHandler} />
       <About />
       <Contact />
-      <h2 className={`text-center ${styles.h2}`}>
-        hello hey there how are you
-      </h2>
     </>
   );
 };
